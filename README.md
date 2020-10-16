@@ -43,3 +43,28 @@ Use these steps to clone from SourceTree, our client for using the repository co
 4. Open the directory you just created to see your repository’s files.
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+
+---
+
+# WorkSpace Setup
+
+---
+
+## Backend 
+
+---
+
+NodeJs version used --> 12.19.0 LTS
+Better to use Linux or MacOS as windows isn't well supported.
+
+### Installing NodeJs 12.19.0 on Ubuntu
+
+
+```
+sudo apt update
+sudo apt -y upgrade
+sudo apt update
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs
+```
