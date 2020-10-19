@@ -1,6 +1,6 @@
 import React from 'react';
 
-const userTicket = (props) => {
+const userTicket = () => {
     return <div className = 'Ticket'>{Math.floor((Math.random() * 50) + 1)}</div>
 
 }
