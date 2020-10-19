@@ -1,15 +1,28 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import { Component } from 'react';
 import AdministratorHeader from './Administrator_Header';
+import BackButton from '../Shared/Back_Button';
+import ShowService from '../Shared/ShowService';
+import { serviceList } from '../../Dummy_Data/Dummy_Service'
 
-const administratorInterface = () => {
-    return <div>
-        <AdministratorHeader/>
-        <div className= 'PageContent'>
-        <Link to = '/Operator'><div className= 'HomePage_Button'>Operator</div></Link>
-        <Link to = '/User'><div className= 'HomePage_Button'>User</div></Link>
-        </div>
-    </div>
+class administratorInterface extends Component {
+
+    //serviceList = serviceList;
+
+    state = { counterNumber: 1 }
+
+    render() {
+        return (<div>
+            <AdministratorHeader />
+            <div className='PageContentRow'>
+                <div className='PageContentColumn'>
+                    <h5 className="SubHeader"> Configuration of Counter #{this.state.counterNumber}</h5>
+                    {serviceList.map((service) => { return <button className={(service.enabled) ? 'Service_Enabled' : 'Service_Disabled'} onClick={() => { service.toggleService(); this.setState(this.state); }}>{service.name}</button> })}
+                </div>
+            </div>
+            <BackButton />
+        </div>);
+    }
 
 }
 

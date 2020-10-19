@@ -15,7 +15,14 @@ class operatorInterface extends Component {
     callNextCustomerHandler = () => {
         this.setState({ nextCustomer: Math.floor((Math.random() * 50) + 1) })
     };
-    serviceList = serviceList;
+
+    checkEnabled = () => {
+        for (let i = 0; i < serviceList.length; i++)
+            if (serviceList[i].enabled)
+                return true;
+        return false;
+    }
+
     render() {
         return (<div>
             <OperatorHeader />
@@ -23,9 +30,17 @@ class operatorInterface extends Component {
                 <h5 className="SubHeader">You are operating at Counter #{this.state.counterNumber}</h5>
                 <div className='PageContentRow'>
                     <div className='PageContentColumn'>
-                        {this.serviceList.map((service) => { return <button className='HomePage_Button'>{service.name}</button> })}</div>
-                    <div className='PageContentColumn'><NextCustomer>{this.state.nextCustomer}</NextCustomer>
-                        <button className='HomePage_Button' onClick={this.callNextCustomerHandler}>Call the Next Customer</button></div></div>
+                        {serviceList.map((service) => { return (service.enabled) ? <div className='Service_Enabled'>{service.name}</div> : null })}</div>
+                    {(this.checkEnabled()) ?
+                        <div className='PageContentColumn'>
+                            <NextCustomer>{this.state.nextCustomer}</NextCustomer>
+                            <button className='HomePage_Button' onClick={this.callNextCustomerHandler}>Call the Next Customer</button>
+                        </div> :
+                        <div className='PageContentColumn'>
+                            <h5 className="SubHeader">No service has been assigned to this counter<br />
+                            Wait for an Amministrator</h5>
+                        </div>}
+                </div>
             </div>
             <BackButton />
         </div>)
