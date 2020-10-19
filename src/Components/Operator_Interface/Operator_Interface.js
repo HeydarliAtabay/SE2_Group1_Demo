@@ -38,7 +38,7 @@ class operatorInterface extends Component {
                         </div> :
                         <div className='PageContentColumn'>
                             <h5 className="SubHeader">No service has been assigned to this counter<br />
-                            Wait for an Amministrator</h5>
+                            Wait for an Administrator</h5>
                         </div>}
                 </div>
             </div>
