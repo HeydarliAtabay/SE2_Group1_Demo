@@ -50,6 +50,16 @@ Now that you're more familiar with your Bitbucket repository, go ahead and add a
 
 ---
 
+## IDE
+
+Visual Studio Code is well fitted for full stack javascript web application.
+
+1) Download Vs Code
+2) Install Jira Plugin
+3) Add BitBucket credential (https://support.atlassian.com/bitbucket-cloud/docs/configure-your-dvcs-username-for-commits/)
+4) Clone The Repository Locally
+---
+
 ## Backend 
 
 ---
