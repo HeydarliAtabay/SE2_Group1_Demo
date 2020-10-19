@@ -1,15 +1,18 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import{Component} from 'react';
 import OperatorHeader from './Operator_Header';
+import BackButton from '../Shared/Back_Button';
+import {taskList} from '../../Dummy_Data/Dummy_Service'
 
-const operatorInterface = () => {
-    return <div>
+
+class operatorInterface extends Component {
+    render(){
+    return (<div>
         <OperatorHeader/>
         <div className= 'PageContent'>
-        <Link to = '/Administrator'><div className= 'HomePage_Button'>Administrator</div></Link>
-        <Link to = '/User'><div className= 'HomePage_Button'>User</div></Link>
         </div>
-    </div>
+        <BackButton />
+    </div>)};
 
 }
 
