@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
+  width: 100vw;
+}
+
+.SubHeader{
+    background-color: #282c34;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.HomePage_Header {
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.HomePage_Button {
+  width: 200px;
+  margin:10px;
+  padding: 15px 20px 15px;
+  color: white;
+  background-color: orange;
+  border-style: solid;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: normal;
+}
+
+.HomePage_Button:hover{
+  font-weight: bold;
+  color: orange;
+  background-color: white;
+}
+
+a{
+  text-decoration: none;
+}
+
+.PageContent{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
