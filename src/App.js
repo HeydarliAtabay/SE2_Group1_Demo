@@ -1,9 +1,8 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {Route} from 'react-router-dom';
 import './App.css';
-import HomepageHeader from './Components/HomePage_Contents/HomePage_Header';
-import HomepageContents from './Components/HomePage_Contents/HomePage_Contents';
+import HomepageHeader from './FrontEnd/Components/HomePage_Contents/HomePage_Header';
+import HomepageContents from './FrontEnd/Components/HomePage_Contents/HomePage_Contents';
 
 function App() {
   return (
