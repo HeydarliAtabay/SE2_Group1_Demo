@@ -6,6 +6,9 @@ import UserTicket from './User_Ticket';
 import { serviceList } from '../../Dummy_Data/Dummy_Service'
 
 
+import nextCustomer from '../Operator_Interface/NextCustomer'
+import userTicket from './User_Ticket';
+
 class userInterface extends Component {
 
     state = { selected: false }
@@ -22,6 +25,11 @@ class userInterface extends Component {
                     this.serviceList.map((service) => { return <button className='HomePage_Button' onClick={this.serviceSelectedHandler}>{service.name}</button> })
                 }
             </div>
+                {
+                this.state.selected ? 
+                    <nextCustomer><h5 className="SubHeader">{nextCustomer==userTicket ? 'Now it is your turn' : 'Wait'}</h5></nextCustomer>  :  <h3></h3>              
+                }
+
             <BackButton />
         </div>)
     };
