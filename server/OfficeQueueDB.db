@@ -1,0 +1,25 @@
+--
+-- File generated with SQLiteStudio v3.2.1 on Tue Oct 20 18:31:50 2020
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: Counter
+CREATE TABLE Counter (Counter_ID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, Service_types VARCHAR (30) NOT NULL, Number_of_req INTEGER NOT NULL DEFAULT (0), Operator_ID INTEGER NOT NULL REFERENCES Operator (Operator_ID));
+
+-- Table: Customers
+CREATE TABLE Customers (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Service_ID INTEGER REFERENCES Service (Service_ID) NOT NULL, Counter_ID INTEGER REFERENCES Counter (Counter_ID) NOT NULL, Estimated_time TIME NOT NULL DEFAULT (0), Queue_ID INTEGER NOT NULL REFERENCES Queue (Queue_ID), Date DATE NOT NULL, Time TIME NOT NULL, Status VARCHAR (15) NOT NULL);
+
+-- Table: Operator
+CREATE TABLE Operator (Operator_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(20) NOT NULL, Surname VARCHAR (30) NOT NULL);
+
+-- Table: Queue
+CREATE TABLE Queue (Queue_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Service_ID INTEGER REFERENCES Service (Service_ID) NOT NULL, Length INTEGER (3) NOT NULL DEFAULT (0), Total_waiting_time TIME NOT NULL DEFAULT (0));
+
+-- Table: Service
+CREATE TABLE Service (Service_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, Service_Type VARCHAR (30) NOT NULL, Description TEXT (100) NOT NULL, Service_time TIME NOT NULL DEFAULT (0));
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
