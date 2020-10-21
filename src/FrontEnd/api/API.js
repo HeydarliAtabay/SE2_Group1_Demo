@@ -18,7 +18,7 @@ async function getCustomerTicket(Service_type){
 async function getServices() {
     const response = await fetch(baseURL + "/services");
     const servicesJson = await response.json();
-    if(response.ok) return servicesJson; // .map((c) => Car.from(c));
+    if(response.ok) return servicesJson.map((s) => s.serviceType);
     else {
         let err = { status: response.status, errObj: servicesJson };
         throw err;
@@ -28,7 +28,7 @@ async function getServices() {
 async function getCounterServices(counterId) {
     const response = await fetch(baseURL + "/services/" + counterId);
     const servicesJson = await response.json();
-    if(response.ok) return servicesJson; // .map((c) => Car.from(c));
+    if(response.ok) return servicesJson.map((s) => s.serviceType);
     else {
         let err = { status: response.status, errObj: servicesJson };
         throw err;
@@ -56,7 +56,7 @@ async function addCounterService(counterId, serviceType) {
 
 async function deleteCounterService(counterId, serviceType) {
     return new Promise((resolve, reject) => {
-        fetch(baseURL + "/rental?counterId=" + counterId + "&serviceType=" + serviceType, {
+        fetch(baseURL + "/removeService?counterId=" + counterId + "&serviceType=" + serviceType, {
             method: 'DELETE'
         }).then( (response) => {
             if(response.ok) {resolve(null);

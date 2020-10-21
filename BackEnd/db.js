@@ -2,7 +2,7 @@
 
 const sqlite = require('sqlite3').verbose();
 
-const DBSOURCE = './db/OfficeQueueDB.db';
+const DBSOURCE = './db/office-queue.db';
 
 const db = new sqlite.Database(DBSOURCE, (err) => {
     if (err) {

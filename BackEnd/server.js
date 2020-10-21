@@ -51,7 +51,7 @@ app.get('/api/services', (req, res) => {
 // returns an array with Service Types related to the given counter ID
 // GET /api/counterId/services
 app.get('/api/services/:counterID', (req, res) => {
-    managerDao.getCounterInfo(req.params.counterId)
+    managerDao.getCounterInfo(req.params.counterID)
         .then((services) => res.json(services))
         .catch((err) => res.status(500).json({errors: [{'msg': err}] }));
 });
@@ -60,7 +60,7 @@ app.get('/api/services/:counterID', (req, res) => {
 // POST /api/addService
 app.post('/api/addService', [
     check('counterId').isNumeric(),
-    check('serviceType').isAlphanumeric()
+    // check('serviceType').isAlphanumeric()
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
@@ -76,7 +76,9 @@ app.post('/api/addService', [
 // DELETE /api/removeService?counterId=?&serviceType=?
 app.delete('/api/removeService', (req, res) => {
     managerDao.removeService(req.query.counterId, req.query.serviceType)
-        .then( () => res.status(204).end() )
+        .then( () => {
+            res.status(204).end()
+        } )
         .catch((err) => {
             res.status(500).json({errors: [{'param': 'Server', 'msg': err}],})
         });

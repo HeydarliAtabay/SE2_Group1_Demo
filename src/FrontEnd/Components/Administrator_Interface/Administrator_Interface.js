@@ -25,6 +25,9 @@ class administratorInterface extends Component {
         let servicesStatus = services.map( (s) => {
             return counterServices.includes(s);
         });
+        console.log(services);
+        console.log(counterServices);
+        console.log(servicesStatus);
         this.setState({
             services: services,
             counterService: counterServices,
