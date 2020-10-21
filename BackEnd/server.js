@@ -26,13 +26,19 @@ app.use(morgan('tiny'));
 app.use(express.json());
 
 //"As an user I want to select service to be put in a correct queue"
-//POST  /queue/<serviceType>/<userId>
-app.post('/api/queue/:serviceType/:uderId/',(req, res) => {
-    
+//POST  /queue
+//body --> { serviceType, userID}
+app.post('/api/queue/',(req, res) => {
+    CounterDao.addUserToQueue(req.body.serviceType, req.body.userID)
+    .then((answer) =>  res.status(201).json({"queueID" : answer.queueLength, "msg" : "Added Customer"}));
 });
 
 //"As an operator I want to Know if there is something to do"
 //GET /counter/<operatorId>
+app.get('/api/counter/:operatorID', (req, res) => {
+    CounterDao.getNextCustomer(req.operatorID)
+    .then((counter) => res.json());
+});
 
 // MANAGER APIs
 
