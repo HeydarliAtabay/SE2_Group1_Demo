@@ -5,10 +5,9 @@ import BackButton from '../Shared/Back_Button';
 import NextCustomer from './NextCustomer';
 import { serviceList } from '../../Dummy_Data/Dummy_Service';
 
-import API from '../../../api/API';
+import API from '../../api/API';
 
 class operatorInterface extends Component {
-
     state = {
         nextCustomer:  Math.floor((Math.random() * 50) + 1),
         //nextCustomer: API.getTicketToServe(operator_ID,Service_types),

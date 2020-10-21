@@ -42,6 +42,12 @@ app.get('/api/counter/:operatorID', (req, res) => {
 
 // MANAGER APIs
 
+app.get('/api/services', (req, res) => {
+    managerDao.getServices()
+        .then((servicess) => res.json(servicess))
+        .catch((err) => res.status(500).json({errors: [{'msg': err}] }));
+})
+
 // returns an array with Service Types related to the given counter ID
 // GET /api/counterId/services
 app.get('/api/services/:counterID', (req, res) => {
