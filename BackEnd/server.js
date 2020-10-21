@@ -57,7 +57,7 @@ app.get('/api/services/:counterID', (req, res) => {
 });
 
 // add a service to a counter
-// POST /api/addService?counterId=?&serviceType=?
+// POST /api/addService
 app.post('/api/addService', [
     check('counterId').isNumeric(),
     check('serviceType').isAlphanumeric()
@@ -65,7 +65,7 @@ app.post('/api/addService', [
     const errors = validationResult(req);
     if (!errors.isEmpty())
         return res.status(422).json({errors: errors.array()});
-    managerDao.addService(req.query.counterId, req.query.serviceType)
+    managerDao.addService(req.body.counterId, req.body.serviceType)
         .then( () => res.status(201).end() )
         .catch((err) => {
             res.status(500).json({errors: [{'param': 'Server', 'msg': err}],})

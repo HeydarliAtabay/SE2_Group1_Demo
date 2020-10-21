@@ -35,6 +35,41 @@ async function getCounterServices(counterId) {
     }
 }
 
+async function addCounterService(counterId, serviceType) {
+    return new Promise((resolve, reject) => {
+        fetch(baseURL + "/addService", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({counterId: counterId, serviceType: serviceType})
+        }).then( (response) => {
+            if(response.ok) {
+                resolve(null);
+            } else {
+                // analyze the cause of error
+                response.json()
+                    .then( (obj) => {reject(obj);} ) // error msg in the response body
+                    .catch( (err) => {reject({ errors: [{ param: "Application", msg: "Cannot parse server response" }] }) }); // something else
+            }
+        }).catch( (err) => {reject({ errors: [{ param: "Server", msg: "Cannot communicate" }] }) }); // connection errors
+    });
+}
 
-const API = {getCustomerTicket, getTicketToServe, getServices, getCounterServices};
+async function deleteCounterService(counterId, serviceType) {
+    return new Promise((resolve, reject) => {
+        fetch(baseURL + "/rental?counterId=" + counterId + "&serviceType=" + serviceType, {
+            method: 'DELETE'
+        }).then( (response) => {
+            if(response.ok) {resolve(null);
+            } else {
+                // analyze the cause of error
+                response.json()
+                    .then( (obj) => {reject(obj);} ) // error msg in the response body
+                    .catch( (err) => {reject({ errors: [{ param: "Application", msg: "Cannot parse server response" }] }) }); // something else
+            }
+        }).catch( (err) => {reject({ errors: [{ param: "Server", msg: "Cannot communicate" }] }) }); // connection errors
+    });
+}
+
+
+const API = {getCustomerTicket, getTicketToServe, getServices, getCounterServices, addCounterService, deleteCounterService};
 export default API;

@@ -21,13 +21,10 @@ class administratorInterface extends Component {
 
     loadData = async () => {
         let services = await API.getServices();
-        console.log(services);
         let counterServices = await API.getCounterServices(this.state.counterNumber);
-        console.log(counterServices);
         let servicesStatus = services.map( (s) => {
             return counterServices.includes(s);
         });
-        console.log(servicesStatus);
         this.setState({
             services: services,
             counterService: counterServices,
@@ -43,10 +40,14 @@ class administratorInterface extends Component {
         let status = this.state.servicesStatus;
         status[i] = !status[i];
         this.setState({servicesStatus: status});
+        if(status[i])
+            API.addCounterService(this.state.counterNumber, this.state.services[i]);
+        else
+            API.deleteCounterService(this.state.counterNumber, this.state.services[i]);
     }
 
     render() {
-        return (<div>
+        return <div>
             <AdministratorHeader />
             <div className='PageContentRow'>
                 <div className='PageContentColumn'>
@@ -57,7 +58,7 @@ class administratorInterface extends Component {
                 </div>
             </div>
             <BackButton />
-        </div>);
+        </div>;
     }
 
 }
