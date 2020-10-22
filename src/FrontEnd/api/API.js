@@ -1,11 +1,17 @@
+import nextCustomer from '../Components/Operator_Interface/NextCustomer';
+import Customer from './Customer';
 const baseURL = "/api";
 
+
 //when the button "Call the next Customer" is pressed
-async function getTicketToServe(Operator_ID,Service_types) {
-
-
-
-
+async function getNextCustomer(Operator_ID) {
+    const response = await fetch(baseURL + `/counter/${Operator_ID}`);
+    const nextCustomerJson = await response.json();
+    if(response.ok) return new Customer(nextCustomerJson.customerID);
+    else {
+        let err = { status: response.status, errObj: nextCustomerJson };
+        throw err;
+    }
 }
 
 //when the Customer choose the type of service
@@ -71,5 +77,5 @@ async function deleteCounterService(counterId, serviceType) {
 }
 
 
-const API = {getCustomerTicket, getTicketToServe, getServices, getCounterServices, addCounterService, deleteCounterService};
+const API = {getCustomerTicket, getNextCustomer, getServices, getCounterServices, addCounterService, deleteCounterService};
 export default API;

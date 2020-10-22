@@ -27,7 +27,7 @@ class userInterface extends Component {
             </div>
                 {
                 this.state.selected ? 
-                    <nextCustomer><h5 className="SubHeader">{nextCustomer==userTicket ? 'Now it is your turn' : 'Wait'}</h5></nextCustomer>  :  <h3></h3>              
+                    <nextCustomer><h5 className="SubHeader">{nextCustomer===userTicket ? 'Now it is your turn' : 'Wait'}</h5></nextCustomer>  :  <h3></h3>              
                 }
 
             <BackButton />

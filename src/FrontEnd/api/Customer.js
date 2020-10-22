@@ -1,8 +1,7 @@
-class Counter {
-    constructor(Counter_ID, Service_types) {
-      this.Counter_ID = Counter_ID;
-      this.Service_types = Service_types;
+class Customer {
+    constructor(customerID){
+        this.ID = customerID;
     }
-
 }
-export default Counter;
+
+export default Customer;

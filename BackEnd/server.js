@@ -37,7 +37,7 @@ app.post('/api/queue/',(req, res) => {
 //GET /counter/<operatorId>
 app.get('/api/counter/:operatorID', (req, res) => {
     CounterDao.getNextCustomer(req.operatorID)
-    .then((counter) => res.json());
+    .then((counter) => { res.json(counter); });
 });
 
 // MANAGER APIs

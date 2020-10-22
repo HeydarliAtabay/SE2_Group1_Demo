@@ -28,6 +28,6 @@ exports.addUserToQueue = (serviceType, userID) => {
 exports.getNextCustomer = (operatorID) => {
     return new Promise((resolve, reject) => {
         //find operator<-->counter
-        resolve(counter1);
+        resolve({customerID: 2});
     });
 }

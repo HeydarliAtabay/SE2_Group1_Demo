@@ -25,6 +25,16 @@ class operatorInterface extends Component {
         return false;
     }
 
+    
+    loadData = async () => {
+        let nextCustomer = await API.getNextCustomer(1);
+        this.setState({nextCustomer : nextCustomer, counterNumber: 1});
+    }
+
+    componentDidMount () {
+        this.loadData();
+    }
+
     render() {
         return (<div>
             <OperatorHeader />
@@ -35,9 +45,9 @@ class operatorInterface extends Component {
                         {serviceList.map((service) => { return (service.enabled) ? <div className='Service_Enabled'>{service.name}</div> : null })}</div>
                     {(this.checkEnabled()) ?
                         <div className='PageContentColumn'>
-                            <NextCustomer>{this.state.nextCustomer==0 ? '0' : this.state.nextCustomer }</NextCustomer>                            
+                            <NextCustomer>{this.state.nextCustomer===0 ? '0' : this.state.nextCustomer }</NextCustomer>                            
                             {
-                                <h2 className="SubHeader">{this.state.nextCustomer==0 ? 'No one to serve' : ''}</h2>
+                                <h2 className="SubHeader">{this.state.nextCustomer===0 ? 'No one to serve' : ''}</h2>
                             } 
                             
                             <button className='HomePage_Button' onClick={this.callNextCustomerHandler}>Call the Next Customer</button>
