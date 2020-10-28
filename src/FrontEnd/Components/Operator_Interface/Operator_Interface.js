@@ -11,7 +11,8 @@ class operatorInterface extends Component {
     state = {
         nextCustomer:  Math.floor((Math.random() * 50) + 1),
         //nextCustomer: API.getTicketToServe(operator_ID,Service_types),
-        counterNumber: 1
+        counterNumber: 1,
+        counterServices: []
     }
     callNextCustomerHandler = () => {
         this.setState({ nextCustomer: Math.floor((Math.random() * 50) + 1) })
@@ -27,8 +28,12 @@ class operatorInterface extends Component {
 
     
     loadData = async () => {
-        let nextCustomer = await API.getNextCustomer(1);
-        this.setState({nextCustomer : nextCustomer, counterNumber: 1});
+        // load services list
+        let counterServices = await API.getCounterServices(this.state.counterNumber);
+
+        // let nextCustomer = await API.getNextCustomer(1);
+        // this.setState({nextCustomer : nextCustomer, counterServices: counterServices });
+        this.setState({counterServices: counterServices });
     }
 
     componentDidMount () {
@@ -42,10 +47,11 @@ class operatorInterface extends Component {
                 <h5 className="SubHeader">You are operating at Counter #{this.state.counterNumber}</h5>
                 <div className='PageContentRow'>
                     <div className='PageContentColumn'>
-                        {serviceList.map((service) => { return (service.enabled) ? <div className='Service_Enabled'>{service.name}</div> : null })}</div>
-                    {(this.checkEnabled()) ?
+                        {this.state.counterServices.map((service) => { return <div className='Service_Enabled'>{service}</div> })}</div>
+                    {(this.state.counterServices.length) ?
                         <div className='PageContentColumn'>
-                            <NextCustomer>{this.state.nextCustomer===0 ? '0' : this.state.nextCustomer }</NextCustomer>                            
+                            {/*<div className = 'Ticket'>{this.state.nextCustomer===0 ? '0' : this.state.nextCustomer}</div>*/}
+                            <NextCustomer>{this.state.nextCustomer===0 ? '0' : this.state.nextCustomer }</NextCustomer>
                             {
                                 <h2 className="SubHeader">{this.state.nextCustomer===0 ? 'No one to serve' : ''}</h2>
                             } 

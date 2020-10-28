@@ -28,7 +28,6 @@ exports.addService = function (counterId, serviceType) {
     return new Promise((resolve, reject) => {
         const sql = "INSERT INTO COUNTER_SERVICE(counterID, serviceType) VALUES(?, ?)";
         db.run(sql, [counterId, serviceType], (err) => {
-            console.log(err);
             if(err) reject(err);
             else resolve();
         });
@@ -40,7 +39,6 @@ exports.removeService = function (counterId, serviceType) {
     return new Promise((resolve, reject) => {
         const sql = "DELETE FROM COUNTER_SERVICE WHERE counterID=? AND serviceType=?";
         db.run(sql, [counterId, serviceType], (err) => {
-            console.log(err);
             if(err) reject(err);
             else resolve();
         });
